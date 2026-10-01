@@ -1,0 +1,206 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientific Journal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--bg:#fbf8ff;--surface:#fff;--soft:#f3ecff;--lav:#8063b2;--pink:#c8759e;--text:#302b3d;--muted:#777183;--border:#e9e1f1;--shadow:0 18px 50px rgba(91,70,125,.11)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:radial-gradient(circle at 10% 10%,#eee3ff 0,transparent 25%),radial-gradient(circle at 90% 20%,#ffe8f3 0,transparent 25%),var(--bg);color:var(--text);transition:.3s}
+body.dark{--bg:#17151f;--surface:#211e2b;--soft:#2c2739;--text:#f6f1ff;--muted:#b9b1c5;--border:#393248;--shadow:0 18px 50px rgba(0,0,0,.3)}
+button,input{font:inherit}button{cursor:pointer} .progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,var(--lav),var(--pink));z-index:999}
+nav{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10}
+.logo{font:700 25px 'Playfair Display',serif}.logo span{color:var(--pink)}
+.navlinks{display:flex;gap:25px;align-items:center}.navlinks button{background:none;border:0;color:var(--muted);font-weight:700}.mode{width:40px;height:40px;border:1px solid var(--border)!important;border-radius:50%;background:var(--surface)!important}
+.hero{min-height:650px;padding:55px 7% 80px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;position:relative}
+.eyebrow{display:inline-block;padding:9px 15px;border-radius:99px;background:#eee3ff;color:var(--lav);font-size:11px;font-weight:800;letter-spacing:1px;margin-bottom:20px}
+.hero h1{font:600 clamp(48px,6vw,82px)/1.02 'Playfair Display',serif;letter-spacing:-2px}.hero h1 span{color:var(--lav);font-style:italic}
+.hero p{max-width:530px;color:var(--muted);line-height:1.8;margin:25px 0 30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:14px 22px;border-radius:99px;border:0;font-weight:700;transition:.25s}.btn:hover{transform:translateY(-3px)}
+.primary{background:var(--text);color:var(--bg)}.softbtn{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.hero-art{height:470px;display:flex;align-items:center;justify-content:center;position:relative}.orbit{position:absolute;width:390px;height:390px;border:1px solid #c7b7df;border-radius:50%;animation:spin 24s linear infinite}.orbit.two{width:300px;height:300px;animation-direction:reverse}
+.dna{width:115px;height:330px;position:relative;transform:rotate(-10deg)}.dna:before,.dna:after{content:"";position:absolute;width:25px;height:100%;border:7px solid var(--lav);border-top-color:transparent;border-bottom-color:transparent;border-radius:50%}.dna:before{left:8px}.dna:after{right:8px}
+.dna i{position:absolute;left:22px;width:70px;height:7px;background:var(--pink);border-radius:9px}.dna i:nth-child(1){top:35px;transform:rotate(20deg)}.dna i:nth-child(2){top:85px;transform:rotate(-18deg)}.dna i:nth-child(3){top:135px;transform:rotate(20deg)}.dna i:nth-child(4){top:185px;transform:rotate(-18deg)}.dna i:nth-child(5){top:235px;transform:rotate(20deg)}.dna i:nth-child(6){top:285px;transform:rotate(-18deg)}
+.float{position:absolute;animation:float 5s ease-in-out infinite}.f1{top:50px;right:15%;font-size:34px}.f2{bottom:70px;left:12%;font-size:28px}.sticker{position:absolute;padding:12px 16px;background:#ffffffc9;backdrop-filter:blur(10px);border:1px solid #fff;border-radius:18px;box-shadow:0 15px 35px #59447718;font-size:12px;font-weight:800}.s1{top:30px;left:4%;transform:rotate(-6deg)}.s2{top:90px;right:4%;transform:rotate(7deg)}.s3{bottom:20px;right:16%;transform:rotate(-5deg)}
+section{padding:85px 7%}.head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:32px}.head h2{font:600 42px 'Playfair Display',serif}.head p{max-width:440px;color:var(--muted);line-height:1.7}
+.main-grid,.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.main-card,.article-card{background:var(--surface);border:1px solid var(--border);border-radius:28px;overflow:hidden;box-shadow:var(--shadow);transition:.3s;cursor:pointer}.main-card:hover,.article-card:hover{transform:translateY(-7px)}
+.card-art{height:245px;padding:18px;background:linear-gradient(145deg,#f0e7ff,#fff6fb);display:flex;align-items:center;justify-content:center}.card-art svg{width:100%;height:100%}
+.card-body,.article-content{padding:23px}.tag{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:800;color:var(--pink);margin-bottom:9px}.card-body h3,.article-content h3{font:600 27px 'Playfair Display',serif;margin-bottom:9px}.card-body p,.article-content p{color:var(--muted);line-height:1.65;font-size:14px}.link{margin-top:16px;color:var(--lav);font-weight:800;font-size:13px}
+.daily{margin:0 7% 70px;padding:35px;border-radius:32px;background:linear-gradient(110deg,#eee4ff,#fff0f7);display:flex;justify-content:space-between;align-items:center;gap:20px}.daily h3{font:600 30px 'Playfair Display',serif;margin:8px 0}.daily p{color:#706678;line-height:1.7;max-width:700px}
+.search{width:100%;padding:16px 20px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--text);outline:none;margin-bottom:25px}
+.article-image{height:185px;background:var(--soft);display:flex;align-items:center;justify-content:center}.article-image svg{width:92%;height:92%}.meta{display:flex;gap:10px;color:var(--muted);font-size:11px;margin:7px 0 13px} 
+.lab{background:#262230;color:#fff;border-radius:38px;padding:55px;overflow:hidden}.lab h2{font:600 45px 'Playfair Display',serif;margin-bottom:12px}.lab>p{color:#c6bfd0;max-width:650px;line-height:1.8}.lab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px}.lab-item{padding:22px;border-radius:21px;background:#ffffff0d;border:1px solid #ffffff12;cursor:pointer}.lab-item:hover{background:#ffffff18}.lab-icon{font-size:28px;margin-bottom:10px}.lab-item p{font-size:13px;color:#c6bfd0;margin-top:6px}
+footer{padding:45px 7%;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+.article-page{display:none;padding:50px 7% 90px}.article-page.active{display:block}.article-top{max-width:900px;margin:auto}.back{border:0;background:none;color:var(--lav);font-weight:800;margin-bottom:28px}.article-title{font:600 clamp(42px,6vw,70px)/1.05 'Playfair Display',serif}.intro{font-size:17px;line-height:1.8;color:var(--muted);margin:18px 0 30px}.article-hero{height:400px;border-radius:34px;background:linear-gradient(135deg,#eee5ff,#fff0f7);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:35px}.article-hero svg{width:80%;height:80%}.article-text{max-width:800px;margin:auto}.article-text h2{font:600 31px 'Playfair Display',serif;margin:38px 0 13px}.article-text p{color:var(--muted);line-height:1.9;margin-bottom:16px}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.fact{padding:21px;border-radius:20px;background:var(--soft)}.fact strong{display:block;color:var(--lav);margin-bottom:7px}.did{margin:30px 0;padding:26px;border-radius:23px;background:linear-gradient(120deg,#fff0f7,#eee7ff);border-left:5px solid var(--pink);line-height:1.7}.did strong{display:block;color:var(--pink);margin-bottom:7px}
+.quiz{margin-top:50px;padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow)}.quiz h2{font:600 31px 'Playfair Display',serif}.quiz-sub{color:var(--muted);margin:7px 0 15px}.question{padding:20px 0;border-bottom:1px solid var(--border)}.question h4{margin-bottom:12px}.option{display:block;padding:11px 14px;background:var(--soft);border-radius:12px;margin:7px 0;cursor:pointer}.result{display:none;margin-top:18px;padding:16px;border-radius:15px;background:#eee3ff;color:#65478f;font-weight:800}.related{margin-top:55px}.related h2{font:600 30px 'Playfair Display',serif;margin-bottom:18px}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.related-card{padding:20px;border-radius:20px;background:var(--soft);cursor:pointer}.related-card span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.hidden{display:none!important}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.main-grid,.article-grid{grid-template-columns:1fr 1fr}.lab-grid{grid-template-columns:1fr}.head{flex-direction:column;align-items:start}}
+@media(max-width:650px){nav{padding:18px 5%}.navlinks{gap:10px}.navlinks button:not(.mode){display:none}.hero{padding:45px 5%}.hero h1{font-size:48px}.hero-art{height:390px}.orbit{width:310px;height:310px}.orbit.two{width:245px;height:245px}section{padding:60px 5%}.main-grid,.article-grid,.facts,.related-grid{grid-template-columns:1fr}.daily{margin:0 5% 55px;flex-direction:column;align-items:start}.lab{padding:35px 25px}.article-page{padding:40px 5%}.article-hero{height:290px}}
+</style>
+</head>
+<body>
+<div style="
+text-align:center;
+font-family:Georgia,serif;
+font-size:16px;
+letter-spacing:2px;
+color:#8b6fa8;
+margin:12px 0 20px;
+">
+Messas Ouazna
+</div>
+<div class="progress" id="progress"></div>
+<nav>
+  <div class="logo">Scientific <span>Journal</span></div>
+  <div class="navlinks">
+    <button onclick="home();go('home')">Home</button>
+    <button onclick="home();go('discover')">Discover</button>
+    <button onclick="home();go('lab')">Enter the Lab</button>
+    <button class="mode" onclick="dark()">☾</button>
+  </div>
+</nav>
+
+<div id="homePage">
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">✦ CURIOUS MINDS WELCOME</div>
+    <h1>Science,<br><span>beautifully</span><br>explained.</h1>
+    <p>Explore the hidden systems behind life, discover fascinating scientific ideas, and turn curiosity into knowledge.</p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="go('discover')">Explore Science →</button>
+      <button class="btn softbtn" onclick="randomArticle()">Surprise me ✦</button>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="orbit"></div><div class="orbit two"></div>
+    <div class="dna"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="float f1">✿</div><div class="float f2">✦</div>
+  </div>
+  <div class="sticker s1">🧬 biology</div><div class="sticker s2">✦ curious?</div><div class="sticker s3">🔬 explore</div>
+</section>
+
+<div class="daily">
+  <div><div class="tag">SCIENCE OF THE DAY</div><h3 id="factTitle"></h3><p id="factText"></p></div>
+  <button class="btn softbtn" onclick="newFact()">Another fact ✦</button>
+</div>
+
+<section id="discover">
+  <div class="head"><div><div class="eyebrow">DISCOVER</div><h2>Explore the world of science.</h2></div><p>Three doors into a universe of ideas — from living systems to scientific discoveries and the world beyond Earth.</p></div>
+  <div class="main-grid">
+
+    <div class="main-card" onclick="filterArticles(['nervous','immunity','breast'])">
+      <div class="card-art"><svg viewBox="0 0 300 220"><circle cx="150" cy="110" r="80" fill="#e7d9ff"/><circle cx="150" cy="110" r="62" fill="#fff8ff"/><ellipse cx="150" cy="110" rx="20" ry="60" fill="#c9b3ee"/><path d="M150 50C105 75 195 95 150 120C105 145 195 165 150 180" fill="none" stroke="#8d70bd" stroke-width="8"/><path d="M150 65L105 85M150 90L195 110M150 120L105 140M150 150L195 170" stroke="#e4a2c2" stroke-width="7" stroke-linecap="round"/></svg></div>
+      <div class="card-body"><div class="tag">Living systems</div><h3>Biology</h3><p>Cells, organs, neurons, immunity and the systems that make living organisms work.</p><div class="link">Explore biology →</div></div>
+    </div>
+
+    <div class="main-card" onclick="filterArticles(['hiv','microbes','breast'])">
+      <div class="card-art"><svg viewBox="0 0 300 220"><circle cx="150" cy="110" r="70" fill="#ffe3ef"/><circle cx="150" cy="110" r="45" fill="#fffaf2"/><path d="M120 105C120 75 180 75 180 105C180 125 168 130 165 145H135C132 130 120 125 120 105Z" fill="#e8a7c7"/><rect x="135" y="145" width="30" height="16" rx="7" fill="#9e83cc"/><path d="M150 45V25M205 60l13-13M95 60L82 47M218 112h20M62 112h20" stroke="#8567b5" stroke-width="6" stroke-linecap="round"/></svg></div>
+      <div class="card-body"><div class="tag">Ideas & discoveries</div><h3>Discoveries</h3><p>Follow fascinating questions, breakthroughs and ideas that changed our understanding of the world.</p><div class="link">Start discovering →</div></div>
+    </div>
+
+    <div class="main-card" onclick="filterArticles(['space'])">
+      <div class="card-art"><svg viewBox="0 0 300 220"><rect width="300" height="220" rx="30" fill="#eeeaff"/><circle cx="150" cy="110" r="58" fill="#c9b8ec"/><circle cx="130" cy="92" r="8" fill="#a18acb"/><circle cx="170" cy="125" r="11" fill="#a18acb"/><ellipse cx="150" cy="110" rx="90" ry="28" fill="none" stroke="#8065ad" stroke-width="7" transform="rotate(-15 150 110)"/><circle cx="55" cy="48" r="4" fill="#fff"/><circle cx="245" cy="55" r="5" fill="#fff"/><circle cx="225" cy="170" r="4" fill="#fff"/></svg></div>
+      <div class="card-body"><div class="tag">Beyond Earth</div><h3>Space</h3><p>Planets, stars, galaxies and the questions that take science beyond our own world.</p><div class="link">Explore space →</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="articles">
+  <div class="head"><div><div class="eyebrow">ARTICLE LIBRARY</div><h2>Read. Learn. Question.</h2></div><p>Short scientific articles designed to make complex ideas easier to understand.</p></div>
+  <input class="search" id="search" placeholder="🔎 Search articles..." oninput="search()">
+  <div class="article-grid" id="articleGrid"></div>
+</section>
+
+<section id="lab">
+  <div class="lab"><div class="eyebrow">INTERACTIVE CORNER</div><h2>Enter the Lab.</h2><p>Science is more fun when you interact with it. Explore tiny challenges, discover facts and test what you remember.</p>
+    <div class="lab-grid">
+      <div class="lab-item" onclick="randomArticle()"><div class="lab-icon">🧠</div><b>Mini Challenge</b><p>Open a random scientific topic and test yourself.</p></div>
+      <div class="lab-item" onclick="newFact()"><div class="lab-icon">💡</div><b>Curiosity Machine</b><p>Generate another science fact.</p></div>
+      <div class="lab-item" onclick="showSaved()"><div class="lab-icon">🔖</div><b>Saved Articles</b><p>See articles you saved for later.</p></div>
+    </div>
+  </div>
+</section>
+<footer><b>Scientific Journal</b><br><br>Science • Curiosity • Discovery<br><br>Educational content — not medical advice.</footer>
+</div>
+
+<div class="article-page" id="articlePage"><div class="article-top"><button class="back" onclick="home();go('articles')">← Back to Discover</button><div id="articleContent"></div></div></div>
+<script>
+const A={
+nervous:{cat:"Biology",title:"The Nervous System",short:"How the brain, spinal cord and nerves communicate with the body.",time:"5 min read",level:"Beginner",intro:"The nervous system is the body's communication network. It allows the brain and the rest of the body to exchange information and helps coordinate movement, sensation and many essential functions.",image:`<svg viewBox="0 0 500 330"><circle cx="250" cy="165" r="115" fill="#eadff8"/><path d="M170 160C145 120 170 80 215 85C230 45 285 50 300 85C350 75 370 125 345 155C370 195 330 225 295 210C260 250 205 225 210 195C180 195 160 180 170 160Z" fill="none" stroke="#876bb4" stroke-width="10"/><path d="M215 95C190 125 215 145 195 175M250 75C230 115 270 125 245 160M300 90C280 125 320 140 290 180" fill="none" stroke="#e1a4c4" stroke-width="7" stroke-linecap="round"/></svg>`,facts:[["Central nervous system","Brain + spinal cord"],["Peripheral nervous system","Nerves outside the CNS"],["Basic cell","Neuron"]],sections:[["A communication network","The nervous system transmits signals between the brain and the rest of the body, including internal organs. This communication helps coordinate activities such as movement, breathing, seeing, thinking and responding to changes around us."],["Two major divisions","The central nervous system consists of the brain and spinal cord. The peripheral nervous system consists of nerves that branch from the spinal cord and extend throughout the body."],["Meet the neuron","A neuron is a specialized nerve cell involved in communication. Neurons have structures including a cell body, dendrites and an axon. Dendrites receive information, while the axon carries information away from the cell body."]],did:"Your nervous system is active continuously — even while you are asleep.",q:[["What are the two main divisions?",["Central and peripheral","Heart and lungs","Bones and muscles"],0],["What is a neuron?",["A nerve cell","A hormone","A bone"],0],["What makes up the central nervous system?",["Brain and spinal cord","Heart and lungs","Skin and blood"],0]]},
+immunity:{cat:"Biology",title:"The Immune System",short:"Meet the body's defense network and learn how it responds to threats.",time:"5 min read",level:"Beginner",intro:"The immune system is a network of cells, tissues and organs that works together to help protect the body from infections and other diseases.",image:`<svg viewBox="0 0 500 330"><circle cx="250" cy="165" r="100" fill="#fff6fb" stroke="#d9b5e0" stroke-width="7"/><circle cx="205" cy="135" r="38" fill="#e8a9c7"/><circle cx="295" cy="135" r="32" fill="#c2ace9"/><circle cx="245" cy="205" r="42" fill="#a995d2"/><circle cx="190" cy="210" r="22" fill="#f2c6d9"/><circle cx="315" cy="205" r="20" fill="#e4b1cb"/></svg>`,facts:[["Main role","Defend against infections"],["Made of","Cells, tissues and organs"],["Vaccines","Train immune recognition"]],sections:[["A defense system","The immune system protects the body from viruses, bacteria and other things that can cause illness. It is not a single organ; it is a coordinated network of many components."],["Recognition matters","A key feature of immunity is the ability to recognize particular threats. Different immune cells and molecules participate in identifying and responding to foreign material."],["Vaccines and immunity","Vaccines can train the body's immune system to recognize specific diseases without requiring the person to experience the full disease."]],did:"Your immune system is not one single shield. It is a complex network in which different cells, tissues and organs work together.",q:[["What is the immune system?",["A network of cells, tissues and organs","A single organ","A muscle"],0],["What is one role of immunity?",["Fight infections","Produce oxygen","Move bones"],0],["What can vaccines do?",["Train immune recognition","Replace all immune cells","Stop the nervous system"],0]]},
+hiv:{cat:"Medical Science",title:"HIV & AIDS",short:"Understanding HIV, the immune system, and why treatment matters.",time:"6 min read",level:"Beginner",intro:"HIV is a virus that attacks the body's immune system. Without treatment, HIV can damage immune defenses and may progress to AIDS, the most advanced stage of HIV infection.",image:`<svg viewBox="0 0 500 330"><circle cx="250" cy="165" r="85" fill="#f4ddeb" stroke="#9b77bd" stroke-width="7"/><circle cx="250" cy="165" r="30" fill="#b694d7"/><g fill="#e7a8c7"><circle cx="250" cy="60" r="10"/><circle cx="330" cy="95" r="10"/><circle cx="355" cy="165" r="10"/><circle cx="320" cy="235" r="10"/><circle cx="250" cy="270" r="10"/><circle cx="180" cy="235" r="10"/><circle cx="145" cy="165" r="10"/><circle cx="175" cy="95" r="10"/></g></svg>`,facts:[["HIV","Human immunodeficiency virus"],["Target","Immune system cells, including CD4 cells"],["Treatment","Can control HIV and reduce its impact"]],sections:[["What is HIV?","HIV stands for human immunodeficiency virus. The virus attacks the immune system, particularly CD4 cells, which are important for coordinating immune responses."],["HIV and AIDS are not the same","HIV is the virus. AIDS is the most advanced stage of HIV infection. With appropriate treatment, people with HIV can prevent progression to AIDS."],["Why treatment matters","Antiretroviral treatment can control HIV. Treatment helps protect the immune system and can greatly reduce the amount of virus in the body. Testing and medical care are important."]],did:"Modern HIV treatment can control the virus and has transformed HIV care.",q:[["What does HIV attack?",["The immune system","Bones","Hair"],0],["What is AIDS?",["The most advanced stage of HIV infection","A bacteria","A vaccine"],0],["What are CD4 cells?",["Immune system cells","Bone cells","Skin cells"],0]]},
+breast:{cat:"Medical Science",title:"Breast Cancer",short:"An introduction to how breast cancer begins and why screening matters.",time:"6 min read",level:"Beginner",intro:"Breast cancer is a disease in which cells in the breast grow out of control. There are different types, and many begin in the ducts or lobules of the breast.",image:`<svg viewBox="0 0 500 330"><path d="M155 80C100 105 90 185 145 230C180 258 235 250 250 205C265 250 320 258 355 230C410 185 400 105 345 80C315 65 275 75 250 100C225 75 185 65 155 80Z" fill="#f6c7da"/><circle cx="250" cy="155" r="30" fill="#e7a0c2"/><path d="M250 155C215 125 190 145 175 165M250 155C285 125 310 145 325 165M250 155C235 190 210 195 190 200M250 155C265 190 290 195 310 200" fill="none" stroke="#b77b9f" stroke-width="7" stroke-linecap="round"/></svg>`,facts:[["What changes?","Breast cells grow out of control"],["Common origins","Ducts or lobules"],["Diagnosis","May involve imaging and biopsy"]],sections:[["What is breast cancer?","Breast cancer occurs when cells in the breast grow out of control. There are different types, depending on which cells become cancerous."],["The structure of the breast","The breast contains lobules, which produce milk, ducts that carry milk toward the nipple, and connective tissue. Many breast cancers begin in ducts or lobules."],["Finding and diagnosing changes","When an examination shows an abnormal area, healthcare professionals may use additional tests such as diagnostic mammography, ultrasound, MRI or biopsy to investigate it."]],did:"Breast cancer is not one single disease. There are multiple types, and their characteristics can differ.",q:[["What happens in breast cancer?",["Breast cells grow out of control","All cells disappear","Bones become infected"],0],["Where do many begin?",["Ducts or lobules","Bones","Muscles"],0],["What may be used to examine an abnormal area?",["Biopsy","Hearing test","Dental cleaning"],0]]},
+microbes:{cat:"Microbiology",title:"The Microbial World",short:"A journey into the tiny organisms and particles that surround us.",time:"5 min read",level:"Beginner",intro:"The microbial world is enormous and diverse. Microbes are found in soil, water, food, air and on or inside living organisms.",image:`<svg viewBox="0 0 500 330"><circle cx="170" cy="150" r="65" fill="#d7c6ef" stroke="#866cb2" stroke-width="7"/><circle cx="170" cy="150" r="25" fill="#a88dce"/><circle cx="330" cy="175" r="50" fill="#f0bfd5" stroke="#b96f98" stroke-width="7"/><circle cx="330" cy="175" r="18" fill="#d88cac"/><path d="M105 95C70 60 65 90 85 110M105 205C65 225 80 250 110 230M230 100C260 65 280 90 260 115M380 120C420 90 430 120 400 135" fill="none" stroke="#9a7abd" stroke-width="7" stroke-linecap="round"/></svg>`,facts:[["Microbes","Microscopic organisms or entities"],["Some are helpful","Microbial communities support ecosystems and bodies"],["Some cause disease","Certain microbes can cause infections"]],sections:[["Small does not mean unimportant","Microorganisms are too small to see clearly with the unaided eye, but they play major roles in ecosystems, food production, decomposition and human health."],["Helpful and harmful","Not every microbe is dangerous. Some microorganisms are useful or harmless, while others can cause infections. The effect depends on the organism and context."],["How infections happen","An infection can occur when a disease-causing microorganism enters the body, multiplies and triggers a response. Understanding how pathogens spread helps reduce transmission."]],did:"The word microbe does not automatically mean dangerous. The microbial world contains enormous diversity.",q:[["Are all microbes harmful?",["Yes","No","Only bacteria"],1],["Where can microbes be found?",["Many environments","Only hospitals","Only space"],0],["Can some microbes cause infections?",["Yes","No","Never"],0]]},
+space:{cat:"Space",title:"A Tiny Window Into Space",short:"Why looking beyond Earth helps us understand our place in the universe.",time:"4 min read",level:"Beginner",intro:"Space science asks questions about planets, stars, galaxies and the physical laws that shape the universe.",image:`<svg viewBox="0 0 500 330"><rect width="500" height="330" rx="35" fill="#242032"/><circle cx="250" cy="165" r="65" fill="#c7b6e8"/><circle cx="225" cy="140" r="10" fill="#a08bc9"/><circle cx="275" cy="185" r="13" fill="#a08bc9"/><ellipse cx="250" cy="165" rx="145" ry="45" fill="none" stroke="#e2c3d8" stroke-width="7" transform="rotate(-18 250 165)"/><circle cx="110" cy="80" r="4" fill="#fff"/><circle cx="390" cy="70" r="5" fill="#fff"/><circle cx="400" cy="245" r="4" fill="#fff"/></svg>`,facts:[["Stars","Massive objects producing light and energy"],["Planets","Objects orbiting stars"],["Galaxies","Huge systems containing stars and other matter"]],sections:[["Why study space?","Looking at the universe gives scientists a way to study matter, energy, gravity and the history of cosmic structures."],["From planets to galaxies","Our solar system contains the Sun and objects that orbit it. Beyond our solar system are enormous numbers of stars and galaxies."],["The questions never end","Space science continues to ask questions about how planets form, how stars evolve and how galaxies change over time."]],did:"When we study distant objects, we are often seeing light that has traveled for a very long time before reaching us.",q:[["What does space science study?",["Objects and processes beyond Earth","Only Earth","Only plants"],0],["What does Earth orbit?",["The Sun","A cell","A cloud"],0],["What can space studies help us understand?",["Matter and energy","Only weather","Only sleep"],0]]}
+};
+
+const facts=[["Your brain is a communication center","The nervous system sends information between the brain and the rest of the body."],["Immunity is a network","The immune system is made of many cells, tissues and organs working together."],["Microbes are everywhere","Microorganisms can be found in environments ranging from soil and water to living organisms."],["Cancer is not one single disease","Different cancers can begin in different cell types and behave differently."],["Science starts with questions","Many discoveries begin when someone notices something and asks why it happens."],["Space is full of light","Astronomers often learn about distant objects by studying the light that reaches us."]];
+
+function render(ids=Object.keys(A)){const g=document.getElementById('articleGrid');g.innerHTML='';ids.forEach(id=>{let a=A[id];g.innerHTML+=`<div class="article-card" onclick="article('${id}')"><div class="article-image">${a.image}</div><div class="article-content"><div class="tag">${a.cat}</div><h3>${a.title}</h3><div class="meta"><span>⏱ ${a.time}</span><span>•</span><span>${a.level}</span></div><p>${a.short}</p></div></div>`})}
+function article(id){let a=A[id];document.getElementById('homePage').classList.add('hidden');document.getElementById('articlePage').classList.add('active');let factsHTML=a.facts.map(x=>`<div class="fact"><strong>${x[0]}</strong>${x[1]}</div>`).join('');let sections=a.sections.map(x=>`<h2>${x[0]}</h2><p>${x[1]}</p>`).join('');let qs=a.q.map((q,i)=>`<div class="question"><h4>${i+1}. ${q[0]}</h4>${q[1].map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('')}</div>`).join('');let rel=Object.keys(A).filter(x=>x!==id).slice(0,3).map(x=>`<div class="related-card" onclick="article('${x}')"><b>${A[x].title}</b><span>${A[x].cat} · ${A[x].time}</span></div>`).join('');document.getElementById('articleContent').innerHTML=`<div class="tag">${a.cat}</div><h1 class="article-title">${a.title}</h1><div class="meta"><span>⏱ ${a.time}</span><span>•</span><span>${a.level}</span></div><p class="intro">${a.intro}</p><div class="article-hero">${a.image}</div><div class="article-text"><div class="facts">${factsHTML}</div>${sections}<div class="did"><strong>✦ Did You Know?</strong>${a.did}</div><div class="quiz"><h2>🧠 Test Your Understanding</h2><p class="quiz-sub">Answer the questions to check what you understood.</p>${qs}<button class="btn primary" onclick="check('${id}')">Check Answers</button><div class="result" id="result"></div></div></div><div class="related"><h2>Keep exploring</h2><div class="related-grid">${rel}</div></div>`;window.scrollTo({top:0,behavior:'smooth'})}
+function check(id){let a=A[id],score=0;a.q.forEach((q,i)=>{let s=document.querySelector(`input[name="q${i}"]:checked`);if(s&&+s.value===q[2])score++});let r=document.getElementById('result');r.style.display='block';r.innerHTML=`Your score: ${score}/${a.q.length}<br>${score===a.q.length?'Perfect! ✨':score>=2?'Great job! 🌷 Review the article for anything you missed.':'Keep exploring! 🧠 Read the article once more and try again.'}`}
+function home(){document.getElementById('articlePage').classList.remove('active');document.getElementById('homePage').classList.remove('hidden')}
+function go(id){setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'}),50)}
+function filterArticles(ids){home();go('articles');setTimeout(()=>render(ids),200)}
+function randomArticle(){let ids=Object.keys(A);article(ids[Math.floor(Math.random()*ids.length)])}
+function search(){let v=document.getElementById('search').value.toLowerCase();render(Object.keys(A).filter(id=>(A[id].title+A[id].cat+A[id].short).toLowerCase().includes(v)))}
+function dark(){document.body.classList.toggle('dark');localStorage.setItem('sjdark',document.body.classList.contains('dark'))}
+function newFact(){let f=facts[Math.floor(Math.random()*facts.length)];document.getElementById('factTitle').textContent=f[0];document.getElementById('factText').textContent=f[1]}
+function save(id){let x=JSON.parse(localStorage.getItem('saved')||'[]');if(!x.includes(id))x.push(id);localStorage.setItem('saved',JSON.stringify(x))}
+function showSaved(){let x=JSON.parse(localStorage.getItem('saved')||'[]');home();go('articles');setTimeout(()=>render(x),200)}
+window.addEventListener('scroll',()=>{let h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress').style.width=(h?document.documentElement.scrollTop/h*100:0)+'%'});
+render();newFact();if(localStorage.getItem('sjdark')==='true')document.body.classList.add('dark');
+</script>
+</body>
+<div style="
+  text-align:center;
+  margin:20px 0;
+  font-family:Georgia,serif;
+  font-size:16px;
+  letter-spacing:2px;
+  color:#8b6fa8;
+">
+  Messas Ouazna
+<div style="
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin:10px auto;
+  padding:8px 14px;
+  border:1px solid #b9a2d0;
+  border-radius:12px;
+  background:#faf7ff;
+  color:#315b91;
+  font-family:Georgia,serif;
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:1px;
+">
+  USTHB • BAB EZZOUAR • ALGERIA
+</div>
+</div>
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #8b6fa8;
+  font-weight: 500;
+  opacity: 0.9;
+}
+</style>
+
+<script>
+const authorName = document.createElement("div");
+authorName.className = "author-name";
+authorName.textContent = "Messas Ouazna";
+
+const brand = document.querySelector(".brand");
+
+if (brand) {
+  brand.appendChild(authorName);
+}
+</script>
+</html>
